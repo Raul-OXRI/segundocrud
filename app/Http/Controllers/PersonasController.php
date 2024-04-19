@@ -56,12 +56,9 @@ class PersonasController extends Controller
 
         $personas = Personas::find($id);
         $data = $request->except("_token");
-        if($personas->update($data)){
-            return redirect()->route("personas.index")->with("success","Actualizado con exito!");
-        }
-        else{
-            return redirect()->route("personas.index")->with("success","hubo un error al actualizar!");
-        }
+        $personas->update($data);
+        return redirect()->route("personas.index")->with("success","Actualizado con exito!");
+        
         
     }
 
