@@ -14,15 +14,15 @@
                 @csrf
                 @method('put')
                 <label for="">Nombre</label>
-                <input type="text" name="txtnombre" id="txtnombre" class="form-control" required value="{{$personas->Nombre}}">
+                <input type="text" name="Nombre" id="Nombre" class="form-control" required value="{{$personas->Nombre}}">
                 <label for="">Apellido</label>
-                <input type="text" name="txtapellido" id="txtapellido" class="form-control" required value="{{$personas->Apellido}}">
+                <input type="text" name="Apellido" id="Apellido" class="form-control" required value="{{$personas->Apellido}}">
                 <label for="">DPI</label>
-                <input type="text" name="txtdpi" id="txtdpi" class="form-control" required value="{{$personas->DPI}}">
+                <input type="text" name="DPI" id="DPI" class="form-control" required value="{{$personas->DPI}}">
                 <label for="">NIT</label>
-                <input type="text" name="txtnit" id="txtnit" class="form-control" required value="{{$personas->NIT}}">
+                <input type="text" name="NIT" id="NIT" class="form-control" required value="{{$personas->NIT}}">
                 <label for="">Fecha nacimiento</label>
-                <input type="date" name="txtfecha_nacimiento" id="txtfecha_nacimiento" class="form-control" required value="{{$personas->Fecha_nacimiento}}">
+                <input type="date" name="Fecha_nacimiento" id="Fecha_nacimiento" class="form-control" required value="{{$personas->Fecha_nacimiento}}">
                 <br>
                 <a href="{{ route("personas.index") }}" class="btn btn-secondary">
                     <span><i class="bi bi-arrow-return-left"></i></span> regresar

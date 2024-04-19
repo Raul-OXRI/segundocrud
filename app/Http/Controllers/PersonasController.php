@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Personas;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\update;
 
 class PersonasController extends Controller
 {
@@ -22,14 +24,12 @@ class PersonasController extends Controller
 
     public function store(Request $request)
     {
-        //
+
         $personas = new Personas();
-        $personas->Nombre = $request->post('txtnombre');
-        $personas->Apellido = $request->post('txtapellido');
-        $personas->DPI = $request->post('txtdpi');
-        $personas->NIT = $request->post('txtnit');
-        $personas->Fecha_nacimiento = $request->post('txtfecha_nacimiento');
-        $personas->save();
+        
+        $data = $request->except("_token");
+        $personas::create($data); 
+
         return redirect()->route("personas.index")->with("success","Agregado con exito!");
     }
 
@@ -43,21 +43,26 @@ class PersonasController extends Controller
     public function edit($id)
     {
         //
+
+        
         $personas = Personas::find($id);
         return view("customer/mod_update",compact('personas'));
     }
 
+    
+
     public function update(Request $request, $id)
     {
-        //
+
         $personas = Personas::find($id);
-        $personas->Nombre = $request->post('txtnombre');
-        $personas->Apellido = $request->post('txtapellido');
-        $personas->DPI = $request->post('txtdpi');
-        $personas->NIT = $request->post('txtnit');
-        $personas->Fecha_nacimiento = $request->post('txtfecha_nacimiento');
-        $personas->save();
-        return redirect()->route("personas.index")->with("success","Actualizado con exito!");
+        $data = $request->except("_token");
+        if($personas->update($data)){
+            return redirect()->route("personas.index")->with("success","Actualizado con exito!");
+        }
+        else{
+            return redirect()->route("personas.index")->with("success","hubo un error al actualizar!");
+        }
+        
     }
 
     public function destroy($id)
